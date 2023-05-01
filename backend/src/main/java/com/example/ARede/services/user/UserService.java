@@ -18,9 +18,16 @@ public class UserService implements IUserService {
         try {
             _userRepository.save(user);
         } catch (Exception e) {
-            return "Erro ao salvar o usuário!\n"+e;
+            return "Erro ao salvar o usuário!";
         }
 
         return user.getId().toString();
+    }
+
+    @Async
+    public FindUserResponse findUserByEmail(String email){
+        var user = _userRepository.findUserByEmail(email).get();
+        var response = new FindUserResponse(user.getId(), user.getName(), user.getEmail());
+        return response;
     }
 }

@@ -1,14 +1,13 @@
 package com.example.ARede.validator;
 
 import com.example.ARede.services.user.CreateUserRequest;
-
 import java.util.ArrayList;
 
 public class UserValidator{
     private ArrayList<String> errors = new ArrayList<>();
 
 
-    public boolean validator (CreateUserRequest request) {
+    public boolean createValidator (CreateUserRequest request) {
         if (request.email==null || request.email.length()<3 || !request.email.contains("@")){
             this.errors.add("Insira um e-mail válido");
         }
@@ -20,6 +19,7 @@ public class UserValidator{
         if (request.password==null  || request.password.length() <3){
             this.errors.add("Insira uma senha válida");
         }
+
 
         if (!errors.isEmpty()){
             return false;
